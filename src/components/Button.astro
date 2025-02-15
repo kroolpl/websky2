@@ -1,0 +1,37 @@
+---
+interface Props {
+  href?: string;
+  variant?: 'primary' | 'secondary' | 'cta';
+  class?: string;
+  type?: 'button' | 'submit' | 'reset';
+  ariaLabel?: string;
+}
+
+const { 
+  href, 
+  variant = 'primary', 
+  class: className, 
+  type,
+  ariaLabel 
+} = Astro.props;
+
+const variants = {
+  primary: 'bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 text-white',
+  secondary: 'glass text-gray-900',
+  cta: 'bg-gradient-to-r from-rose-500 to-pink-500 hover:from-rose-600 hover:to-pink-600 text-white shadow-lg shadow-rose-500/25 hover:shadow-rose-500/40'
+};
+---
+
+<button
+  type={type || 'button'}
+  aria-label={ariaLabel}
+  role={href ? 'link' : 'button'}
+  {...(href ? { onclick: `window.location.href='${href}'` } : {})}
+  class:list={[
+    'group px-8 py-3 rounded-lg font-medium transition-all hover:scale-105',
+    variants[variant],
+    className
+  ]}
+>
+  <slot />
+</button>

@@ -1,0 +1,224 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import Button from '../components/Button.astro';
+
+const title = "Kontakt - Porozmawiajmy o Twoim Projekcie | WebDesign UK";
+const description = "Skontaktuj się z nami, aby omówić Twój projekt. Oferujemy darmową konsultację i wycenę dla polskich firm w UK.";
+
+const contactMethods = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>`,
+    title: 'Email',
+    value: 'kontakt@webdesignuk.com',
+    link: 'mailto:kontakt@webdesignuk.com'
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+    </svg>`,
+    title: 'Telefon',
+    value: '+44 123 456 789',
+    link: 'tel:+44123456789'
+  }
+];
+---
+<Layout title={title} description={description}>
+  <Header slot="header" />
+  
+  <!-- Hero Section -->
+  <section class="pt-32 lg:pt-40 pb-20 lg:pb-32 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <!-- Animated gradient background -->
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 animate-gradient-xy"></div>
+      
+      <!-- Gradient overlay -->
+      <div class="absolute inset-0 bg-white/50 backdrop-blur-[2px]"></div>
+      
+      <!-- Animated grid -->
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-grid-slate-200 bg-[size:32px_32px] animate-grid-fade"></div>
+      </div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative">
+      <div class="text-left max-w-4xl">
+        <span class="inline-block px-6 py-2 rounded-full bg-primary-100/80 text-primary-700 text-sm font-medium mb-6 animate-fade-down backdrop-blur-sm">
+          Skontaktuj się z Nami
+        </span>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-8 leading-tight tracking-tight">
+          Rozpocznij Swoją <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">Cyfrową</span> Przygodę
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 mb-12 animate-fade-up max-w-3xl leading-relaxed">
+          Jesteśmy tutaj, aby pomóc Ci stworzyć idealną stronę internetową dla Twojej firmy. Skontaktuj się z nami i rozpocznij swoją drogę do sukcesu online.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-6">
+          <Button href="#contact-form" variant="primary">
+            Napisz do Nas
+            <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672Zm-7.518-.267A8.25 8.25 0 1 1 20.25 10.5M8.288 14.212A5.25 5.25 0 1 1 17.25 10.5" />
+            </svg>
+          </Button>
+          <Button href="tel:+44123456789" variant="secondary">
+            Zadzwoń Teraz
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="py-20 lg:py-32 relative overflow-hidden" id="contact-form">
+    <div class="container mx-auto px-4 relative">
+      <div class="max-w-6xl mx-auto">
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- Left Column - Contact Info -->
+          <div class="reveal">
+            <span class="inline-block px-6 py-2 rounded-full bg-primary-100/80 text-primary-700 text-sm font-medium mb-6 animate-fade-down backdrop-blur-sm">
+              Skontaktuj się z Nami
+            </span>
+            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight tracking-tight">
+              Porozmawiajmy o Twoim <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">Projekcie</span>
+            </h2>
+            <p class="text-xl text-gray-600 mb-12 leading-relaxed">
+              Jesteśmy tutaj, aby pomóc Ci stworzyć idealną stronę internetową dla Twojej firmy. Skontaktuj się z nami i rozpocznij swoją drogę do sukcesu online.
+            </p>
+
+            <div class="space-y-6">
+              {contactMethods.map(method => (
+                <a 
+                  href={method.link}
+                  class="flex items-center p-6 glass rounded-xl hover:scale-105 transition-all group"
+                >
+                  <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white mr-6 group-hover:rotate-6 transition-transform">
+                    <Fragment set:html={method.icon} />
+                  </div>
+                  <div>
+                    <h3 class="font-semibold text-gray-900 mb-1">{method.title}</h3>
+                    <p class="text-gray-600">{method.value}</p>
+                  </div>
+                </a>
+              ))}
+            </div>
+          </div>
+
+          <!-- Right Column - Contact Form -->
+          <div class="relative">
+            <div class="absolute -inset-1 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl blur opacity-20"></div>
+            <div class="relative glass p-8 rounded-xl"
+              x-data="{ 
+                name: '', 
+                email: '', 
+                message: '',
+                service: '',
+                loading: false,
+                success: false,
+                error: null,
+                async submit() {
+                  this.loading = true;
+                  this.error = null;
+                  try {
+                    // Add your form submission logic here
+                    await new Promise(resolve => setTimeout(resolve, 1000));
+                    this.success = true;
+                    this.name = '';
+                    this.email = '';
+                    this.message = '';
+                    this.service = '';
+                  } catch (err) {
+                    this.error = 'Wystąpił błąd. Spróbuj ponownie później.';
+                  }
+                  this.loading = false;
+                }
+              }"
+            >
+              <form @submit.prevent="submit" class="space-y-6">
+                <!-- Success Message -->
+                <div 
+                  x-show="success" 
+                  x-transition
+                  class="p-4 bg-green-50 text-green-700 rounded-lg mb-6"
+                >
+                  Dziękujemy za wiadomość! Odpowiemy najszybciej jak to możliwe.
+                </div>
+
+                <!-- Error Message -->
+                <div 
+                  x-show="error" 
+                  x-transition
+                  class="p-4 bg-red-50 text-red-700 rounded-lg mb-6"
+                  x-text="error"
+                ></div>
+
+                <div class="grid md:grid-cols-2 gap-6">
+                  <div>
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Imię i Nazwisko</label>
+                    <input
+                      type="text"
+                      id="name"
+                      x-model="name"
+                      required
+                      class="w-full px-4 py-2 bg-white/50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
+                    />
+                  </div>
+                  
+                  <div>
+                    <label for="email" class="block text-sm font-medium text-gray-700 mb-1">Email</label>
+                    <input
+                      type="email"
+                      id="email"
+                      x-model="email"
+                      required
+                      class="w-full px-4 py-2 bg-white/50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label for="service" class="block text-sm font-medium text-gray-700 mb-1">Interesująca Usługa</label>
+                  <select
+                    id="service"
+                    x-model="service"
+                    required
+                    class="w-full px-4 py-2 bg-white/50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
+                  >
+                    <option value="">Wybierz usługę</option>
+                    <option value="website">Strona Internetowa</option>
+                    <option value="shop">Sklep Internetowy</option>
+                    <option value="seo">Optymalizacja SEO</option>
+                    <option value="other">Inna Usługa</option>
+                  </select>
+                </div>
+                
+                <div>
+                  <label for="message" class="block text-sm font-medium text-gray-700 mb-1">Wiadomość</label>
+                  <textarea
+                    id="message"
+                    x-model="message"
+                    required
+                    rows="4"
+                    class="w-full px-4 py-2 bg-white/50 border border-gray-200 rounded-lg focus:ring-2 focus:ring-primary-500 focus:border-primary-500 transition-all"
+                  ></textarea>
+                </div>
+                
+                <Button type="submit" variant="cta" class="w-full" :disabled="loading">
+                  <span x-show="!loading">Wyślij Wiadomość</span>
+                  <span x-show="loading">Wysyłanie...</span>
+                </Button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  /* Add your existing animations and styles here */
+</style> 

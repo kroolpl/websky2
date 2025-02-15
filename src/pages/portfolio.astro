@@ -1,0 +1,297 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Button from '../components/Button.astro';
+import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import annaImage from '../assets/images/testimonials/anna.jpg';
+import kasiaImage from '../assets/images/testimonials/kasia.jpg';
+import marekImage from '../assets/images/testimonials/marek.jpg';
+
+const title = "Portfolio - Realizacje dla Polskich Firm w UK | WebDesign UK";
+const description = "Zobacz nasze najnowsze realizacje stron internetowych dla polskich firm w Wielkiej Brytanii. Profesjonalne projekty, które przynoszą rezultaty.";
+
+const projects = [
+  {
+    title: 'Polski Sklep Online',
+    category: 'E-commerce',
+    description: 'Nowoczesny sklep internetowy z polskimi produktami, zintegrowany z systemem płatności i dostawy.',
+    image: '/images/portfolio/project1.jpg',
+    tags: ['Sklep Online', 'WooCommerce', 'Płatności Online'],
+    results: ['200% wzrost sprzedaży', '45% więcej klientów', '98% zadowolonych użytkowników']
+  },
+  {
+    title: 'Polska Restauracja',
+    category: 'Strona Firmowa',
+    description: 'Elegancka strona internetowa dla polskiej restauracji w Londynie z systemem rezerwacji online.',
+    image: '/images/portfolio/project2.jpg',
+    tags: ['Rezerwacje Online', 'Menu', 'Responsywność'],
+    results: ['300% więcej rezerwacji', '50% nowych klientów', '4.9/5 ocena użytkowników']
+  },
+  {
+    title: 'Usługi Budowlane',
+    category: 'Strona Firmowa',
+    description: 'Profesjonalna strona dla firmy budowlanej, prezentująca portfolio realizacji i usługi.',
+    image: '/images/portfolio/project3.jpg',
+    tags: ['Portfolio', 'Galeria', 'SEO'],
+    results: ['150% więcej zapytań', '80% więcej wyświetleń', 'Top 3 w Google']
+  }
+];
+
+const testimonials = [
+  {
+    name: "Anna Kowalska",
+    role: "Właścicielka, Polski Sklep 'Smak Domu'",
+    image: annaImage,
+    content: "Współpraca z WebDesign UK to czysta przyjemność. Profesjonalne podejście, świetna komunikacja po polsku i terminowa realizacja. Nasz sklep internetowy przeszedł nasze najśmielsze oczekiwania!",
+    rating: 5,
+    location: "Manchester, UK"
+  },
+  {
+    name: "Marek Nowicki",
+    role: "Dyrektor, Nowicki Construction Ltd",
+    image: marekImage,
+    content: "Doceniam przede wszystkim wsparcie po uruchomieniu strony. Zespół zawsze służy pomocą i szybko reaguje na wszystkie prośby. Polecam każdej polskiej firmie w UK!",
+    rating: 5,
+    location: "London, UK"
+  },
+  {
+    name: "Katarzyna Wiśniewska",
+    role: "Szefowa, Restauracja 'Swojsko'",
+    image: kasiaImage,
+    content: "Dzięki nowej stronie i systemowi rezerwacji online nasza restauracja notuje rekordową liczbę gości. Profesjonalizm i zrozumienie potrzeb klienta na najwyższym poziomie.",
+    rating: 5,
+    location: "Birmingham, UK"
+  }
+];
+---
+
+<style>
+  @keyframes gradient-xy {
+    0%, 100% {
+      background-size: 400% 400%;
+      background-position: 0% 0%;
+    }
+    25% {
+      background-size: 400% 400%;
+      background-position: 100% 0%;
+    }
+    50% {
+      background-size: 400% 400%;
+      background-position: 100% 100%;
+    }
+    75% {
+      background-size: 400% 400%;
+      background-position: 0% 100%;
+    }
+  }
+
+  .animate-gradient-xy {
+    animation: gradient-xy 15s ease infinite;
+  }
+
+  .bg-grid-slate-200 {
+    background-image: linear-gradient(to right, rgb(226 232 240 / 0.1) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgb(226 232 240 / 0.1) 1px, transparent 1px);
+  }
+
+  @keyframes grid-fade {
+    0%, 100% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 0.4;
+    }
+  }
+
+  .animate-grid-fade {
+    animation: grid-fade 3s ease-in-out infinite;
+  }
+</style>
+
+<Layout title={title} description={description}>
+  <Header slot="header" />
+  
+  <!-- Hero Section -->
+  <section class="pt-32 lg:pt-40 pb-20 lg:pb-32 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <!-- Animated gradient background -->
+      <div class="absolute inset-0 bg-gradient-to-r from-blue-100 via-purple-100 to-pink-100 animate-gradient-xy"></div>
+      
+      <!-- Gradient overlay for better readability -->
+      <div class="absolute inset-0 bg-white/50 backdrop-blur-[2px]"></div>
+      
+      <!-- Animated grid -->
+      <div class="absolute inset-0">
+        <div class="absolute inset-0 bg-grid-slate-200 bg-[size:32px_32px] animate-grid-fade"></div>
+      </div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative">
+      <div class="text-left max-w-4xl">
+        <span class="inline-block px-6 py-2 rounded-full bg-primary-100/80 text-primary-700 text-sm font-medium mb-6 animate-fade-down backdrop-blur-sm">
+          Nasze Realizacje
+        </span>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-8 leading-tight tracking-tight">
+          Zobacz Nasze <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">Realizacje</span>
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 mb-12 animate-fade-up max-w-3xl leading-relaxed">
+          Odkryj nasze najnowsze projekty i przekonaj się, jak możemy pomóc Twojej firmie zaistnieć w internecie.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-6">
+          <Button href="/kontakt" variant="primary">
+            Rozpocznij Projekt
+            <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672Zm-7.518-.267A8.25 8.25 0 1 1 20.25 10.5M8.288 14.212A5.25 5.25 0 1 1 17.25 10.5" />
+            </svg>
+          </Button>
+          <Button href="#portfolio" variant="secondary">
+            Zobacz Projekty
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Portfolio Grid -->
+  <section class="py-20 relative">
+    <div class="container mx-auto px-4">
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {projects.map((project) => (
+          <div class="group relative">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
+            <div class="relative glass p-6 rounded-2xl h-full">
+              <div class="aspect-video mb-6 rounded-xl overflow-hidden">
+                <img 
+                  src={project.image} 
+                  alt={project.title}
+                  class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                />
+              </div>
+              
+              <span class="inline-block px-3 py-1 bg-primary-100/80 text-primary-700 text-sm font-medium rounded-full mb-4">
+                {project.category}
+              </span>
+              
+              <h3 class="text-2xl font-bold mb-4 gradient-text">
+                {project.title}
+              </h3>
+              
+              <p class="text-gray-600 mb-6">
+                {project.description}
+              </p>
+              
+              <div class="flex flex-wrap gap-2 mb-6">
+                {project.tags.map(tag => (
+                  <span class="px-3 py-1 bg-gray-100 text-gray-600 text-sm rounded-full">
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              
+              <div class="space-y-2">
+                {project.results.map(result => (
+                  <div class="flex items-center text-gray-600">
+                    <svg class="w-5 h-5 text-primary-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    {result}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50/30"></div>
+    <div class="container mx-auto px-4 relative">
+      <div class="text-center mb-16">
+        <span class="inline-block px-6 py-2 rounded-full bg-primary-100/80 text-primary-700 text-sm font-medium mb-6">
+          Opinie Klientów
+        </span>
+        <h2 class="text-4xl md:text-5xl font-bold mb-6 gradient-text">
+          Co Mówią o Nas Klienci?
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+          Zobacz, co sądzą o nas polskie firmy, którym pomogliśmy osiągnąć sukces w internecie
+        </p>
+      </div>
+      
+      <div class="grid md:grid-cols-3 gap-8">
+        {testimonials.map((testimonial) => (
+          <div class="relative group">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl blur opacity-20 group-hover:opacity-100 transition duration-1000"></div>
+            <div class="relative glass p-8 rounded-2xl h-full">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="relative w-16 h-16 rounded-full overflow-hidden">
+                  <Image 
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    width={64}
+                    height={64}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg">{testimonial.name}</h3>
+                  <p class="text-gray-600 text-sm">{testimonial.role}</p>
+                </div>
+              </div>
+              
+              <div class="mb-4">
+                {[...Array(testimonial.rating)].map(() => (
+                  <svg class="w-5 h-5 text-yellow-400 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              
+              <blockquote class="text-gray-600 mb-4">
+                "{testimonial.content}"
+              </blockquote>
+              
+              <div class="flex items-center text-sm text-gray-500">
+                <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                {testimonial.location}
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Section -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto text-center glass p-12 rounded-2xl relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-secondary-600/10 rounded-2xl"></div>
+        <div class="relative">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            Chcesz Podobnych Rezultatów?
+          </h2>
+          <p class="text-xl text-gray-600 mb-8">
+            Skontaktuj się z nami i dowiedz się, jak możemy pomóc Twojej firmie osiągnąć sukces online
+          </p>
+          <Button href="#contact" variant="cta">
+            Rozpocznij Projekt
+            <svg class="w-5 h-5 ml-2 inline-block transition-transform group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout> 

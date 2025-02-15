@@ -1,0 +1,586 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Button from '../components/Button.astro';
+import Footer from '../components/Footer.astro';
+import SectionHeading from '../components/SectionHeading.astro';
+
+const title = "Kompleksowe Usługi Internetowe dla Firm | WebDesign UK";
+const description = "Profesjonalne usługi internetowe dla firm w UK: bezpieczeństwo, optymalizacja, responsywność i więcej. Sprawdź naszą pełną ofertę!";
+
+const services = [
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+    </svg>`,
+    title: 'Bezpieczeństwo Strony',
+    description: 'Nasze kompleksowe usługi bezpieczeństwa chronią Twoją stronę przed cyberzagrożeniami.',
+    features: [
+      'Certyfikaty SSL',
+      'Ochrona przed malware',
+      'Regularne backupy',
+      'Monitoring 24/7'
+    ]
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M13 10V3L4 14h7v7l9-11h-7z" />
+    </svg>`,
+    title: 'Szybkość Ładowania',
+    description: 'Nasza optymalizacja szybkości ładowania zapewnia płynne i szybkie działanie Twojej strony, znacząco zmniejszając współczynnik odrzuceń i utrzymując zaangażowanie odwiedzających.',
+    features: [
+      'Optymalizacja obrazów',
+      'Minimalizacja kodu JavaScript',
+      'Kompresja obrazów',
+      'Buforowanie'
+    ]
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+    </svg>`,
+    title: 'Responsywność Mobilna',
+    description: 'Nasze responsywne projekty gwarantują, że Twoja strona wygląda i działa perfekcyjnie na wszystkich smartfonach.',
+    features: [
+      'Adaptacja do różnych rozmiarów ekranów',
+      'Optymalizacja dla urządzeń mobilnych',
+      'Testowanie responsywności',
+      'Użycie frameworków'
+    ]
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+    </svg>`,
+    title: 'Optymalizacja SEO',
+    description: 'Stosujemy kompleksowe podejście obejmujące badanie słów kluczowych, optymalizację on-page i tworzenie wysokiej jakości treści, zapewniając wyższą pozycję Twojej strony w wynikach wyszukiwania.',
+    features: [
+      'Badanie słów kluczowych',
+      'Optymalizacja on-page',
+      'Tworzenie wysokiej jakości treści',
+      'Link building'
+    ]
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+    </svg>`,
+    title: 'Konfiguracja Poczty Firmowej',
+    description: 'Tworzymy spersonalizowane adresy email powiązane z Twoją domeną, zwiększając wiarygodność i budując zaufanie klientów i partnerów.',
+    features: [
+      'Tworzenie adresów email',
+      'Integracja z domeną',
+      'Bezpieczne logowanie',
+      'Obsługa popularnych klientów'
+    ]
+  },
+  {
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+    </svg>`,
+    title: 'Konfiguracja Analityki',
+    description: 'Wdrażamy zaawansowane rozwiązania śledzące, które pozwalają monitorować zachowania użytkowników, źródła ruchu i współczynniki konwersji, dostarczając dane niezbędne do podejmowania świadomych decyzji.',
+    features: [
+      'Google Analytics',
+      'Facebook Pixel',
+      'Twitter Ads',
+      'Custom Tracking'
+    ]
+  }
+];
+
+const benefits = [
+  {
+    number: '01',
+    title: 'Doświadczenie',
+    description: 'Ponad 10 lat doświadczenia w tworzeniu stron internetowych dla firm w UK',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+    </svg>`
+  },
+  {
+    number: '02',
+    title: 'Wsparcie',
+    description: 'Pełne wsparcie techniczne w języku polskim i angielskim',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+    </svg>`
+  },
+  {
+    number: '03',
+    title: 'Technologia',
+    description: 'Wykorzystujemy najnowsze technologie i najlepsze praktyki branżowe',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+    </svg>`
+  },
+  {
+    number: '04',
+    title: 'Terminowość',
+    description: 'Gwarantujemy terminową realizację projektów i transparentną komunikację',
+    icon: `<svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+    </svg>`
+  }
+];
+---
+
+<Layout title={title} description={description}>
+  <Header slot="header" />
+  
+  <!-- Hero Section with 3D-like design -->
+  <section class="pt-32 lg:pt-40 pb-20 lg:pb-32 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-indigo-50/80 to-purple-50/90"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808012_1px,transparent_1px),linear-gradient(to_bottom,#80808012_1px,transparent_1px)] bg-[size:24px_24px] animate-grid-fade"></div>
+      <div class="absolute top-20 left-10 w-72 h-72 bg-blue-200 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-float-slow"></div>
+      <div class="absolute bottom-20 right-10 w-72 h-72 bg-purple-200 rounded-full mix-blend-multiply filter blur-2xl opacity-30 animate-float-slower"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative">
+      <div class="text-left">
+        <span class="inline-block px-6 py-2 rounded-full bg-primary-100/80 text-primary-700 text-sm font-medium mb-6 animate-fade-down backdrop-blur-sm">
+          Nasza Oferta
+        </span>
+        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-8 leading-tight tracking-tight">
+          Pakiety Dostosowane do <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">Twoich</span> Potrzeb
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 mb-12 animate-fade-up max-w-3xl leading-relaxed">
+          Wybierz pakiet, który najlepiej odpowiada potrzebom Twojej firmy i rozpocznij swoją drogę do sukcesu online
+        </p>
+        <div class="flex flex-col sm:flex-row gap-6">
+          <Button href="/kontakt" variant="primary">
+            Rozpocznij Projekt
+            <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Button>
+          <Button href="#pricing" variant="secondary">
+            Zobacz Pakiety
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing Section -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50/30"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+    </div>
+
+    <div class="container mx-auto px-4 relative">
+      <div class="grid lg:grid-cols-3 gap-8 mt-12">
+        <!-- Pakiet Podstawowy -->
+        <div class="relative group">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+          <div class="relative glass p-8 rounded-2xl h-full flex flex-col">
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold mb-2 gradient-text">Pakiet Podstawowy</h3>
+              <p class="text-gray-600">Strona Internetowa dla Firm</p>
+              <div class="mt-4 flex items-baseline">
+                <span class="text-4xl font-bold gradient-text">100</span>
+                <span class="text-xl text-gray-500 ml-2">- 300 GBP</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Cena netto</p>
+            </div>
+
+            <div class="space-y-4 mb-8 flex-grow">
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">5-stronicowa Strona</h4>
+                  <p class="text-sm text-gray-600">Strona Główna, O Nas, Usługi, Kontakt, Blog</p>
+                </div>
+              </div>
+              
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">Responsywny Design</h4>
+                  <p class="text-sm text-gray-600">Dostosowany do urządzeń mobilnych</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">Podstawowe SEO</h4>
+                  <p class="text-sm text-gray-600">Meta tagi, nagłówki, optymalizacja treści</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">Integracje</h4>
+                  <p class="text-sm text-gray-600">Google Analytics, Maps, SSL</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4 mt-auto">
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-600">Czas realizacji:</span>
+                <span class="font-medium text-gray-900">2-4 tygodnie</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-600">Wsparcie:</span>
+                <span class="font-medium text-gray-900">1 miesiąc</span>
+              </div>
+              <Button href="/kontakt" variant="primary" class="w-full">
+                Wybierz Pakiet
+                <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pakiet E-Commerce -->
+        <div class="relative group">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+          <div class="relative glass p-8 rounded-2xl h-full flex flex-col">
+            <!-- Popular badge -->
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span class="bg-gradient-to-r from-primary-600 to-secondary-600 text-white px-4 py-1 rounded-full text-sm font-medium">
+                Najpopularniejszy
+              </span>
+            </div>
+
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold mb-2 gradient-text">Pakiet Rozszerzony</h3>
+              <p class="text-gray-600">Strona Internetowa Premium</p>
+              <div class="mt-4 flex items-baseline">
+                <span class="text-4xl font-bold gradient-text">200</span>
+                <span class="text-xl text-gray-500 ml-2">- 400 GBP</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Cena netto</p>
+            </div>
+
+            <div class="space-y-4 mb-8 flex-grow">
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">Rozbudowana Strona</h4>
+                  <p class="text-sm text-gray-600">Do 10 podstron z systemem CMS</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">Zaawansowane SEO</h4>
+                  <p class="text-sm text-gray-600">Audyt, optymalizacja lokalna, GSC</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">Blog Premium</h4>
+                  <p class="text-sm text-gray-600">Kategorie, tagi, social sharing</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">Wsparcie Premium</h4>
+                  <p class="text-sm text-gray-600">Copywriting, animacje, backupy</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4 mt-auto">
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-600">Czas realizacji:</span>
+                <span class="font-medium text-gray-900">4-6 tygodni</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-600">Wsparcie:</span>
+                <span class="font-medium text-gray-900">3 miesiące</span>
+              </div>
+              <Button href="/kontakt" variant="cta" class="w-full">
+                Wybierz Pakiet
+                <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Pakiet Corporate -->
+        <div class="relative group">
+          <div class="absolute -inset-0.5 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+          <div class="relative glass p-8 rounded-2xl h-full flex flex-col">
+            <div class="mb-8">
+              <h3 class="text-2xl font-bold mb-2 gradient-text">Pakiet Corporate</h3>
+              <p class="text-gray-600">Strona Firmowa + CMS</p>
+              <div class="mt-4 flex items-baseline">
+                <span class="text-4xl font-bold gradient-text">6 000</span>
+                <span class="text-xl text-gray-500 ml-2">- 15 000 zł</span>
+              </div>
+              <p class="text-sm text-gray-500 mt-1">Cena netto</p>
+            </div>
+
+            <div class="space-y-4 mb-8 flex-grow">
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">Strona Wielostronicowa</h4>
+                  <p class="text-sm text-gray-600">Do 15 podstron z systemem CMS</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">Indywidualny Design</h4>
+                  <p class="text-sm text-gray-600">Unikalny layout, nie szablonowy</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">Zaawansowane SEO</h4>
+                  <p class="text-sm text-gray-600">Audyt, optymalizacja, mapa strony</p>
+                </div>
+              </div>
+
+              <div class="flex items-start">
+                <svg class="w-6 h-6 text-primary-500 mr-2 mt-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <div>
+                  <h4 class="font-medium text-gray-900">Wersja Dwujęzyczna</h4>
+                  <p class="text-sm text-gray-600">Polski i Angielski</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="space-y-4 mt-auto">
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-600">Czas realizacji:</span>
+                <span class="font-medium text-gray-900">4-6 tygodni</span>
+              </div>
+              <div class="flex items-center justify-between text-sm">
+                <span class="text-gray-600">Wsparcie:</span>
+                <span class="font-medium text-gray-900">3 miesiące</span>
+              </div>
+              <Button href="/kontakt" variant="primary" class="w-full">
+                Wybierz Pakiet
+                <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </Button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid with Modern Cards -->
+  <section class="py-20 relative">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-blue-50/90 via-indigo-50/80 to-purple-50/90"></div>
+    </div>
+    <div class="container mx-auto px-4 relative z-10">
+      <SectionHeading
+        title="Kompleksowe Usługi"
+        subtitle="Oferujemy pełen zakres profesjonalnych usług dla Twojej firmy"
+        tag="Co Oferujemy"
+      />
+      <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {services.map((service) => (
+          <div class="group relative">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl blur opacity-25 group-hover:opacity-75 transition duration-1000"></div>
+            <div class="relative glass p-8 rounded-2xl h-full flex flex-col">
+              <div class="w-14 h-14 rounded-xl bg-gradient-to-br from-primary-500/80 to-secondary-500/80 flex items-center justify-center mb-6 transform transition-all duration-500 group-hover:scale-110 group-hover:rotate-3">
+                <div class="text-white">
+                  <Fragment set:html={service.icon} />
+                </div>
+              </div>
+              
+              <h3 class="text-xl font-bold mb-4 gradient-text">
+                {service.title}
+              </h3>
+              
+              <p class="text-gray-600 leading-relaxed mb-6">
+                {service.description}
+              </p>
+
+              <ul class="space-y-3 mb-6 flex-grow">
+                {service.features?.map((feature) => (
+                  <li class="flex items-center text-gray-600">
+                    <svg class="w-5 h-5 text-primary-500 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
+                    {feature}
+                  </li>
+                ))}
+              </ul>
+
+              <a href="/kontakt" class="inline-flex items-center text-primary-600 hover:text-primary-700 font-medium transition-all group/link mt-auto">
+                Dowiedz się więcej
+                <svg class="w-4 h-4 ml-2 transform transition-transform group-hover/link:translate-x-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefits Section with 3D Cards -->
+  <section class="py-20 relative overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+    </div>
+    
+    <div class="container mx-auto px-4 relative">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="text-3xl md:text-4xl font-bold text-white mb-6">
+          Dlaczego Warto Nam Zaufać?
+        </h2>
+        <p class="text-gray-300 text-lg">
+          Stawiamy na jakość, profesjonalizm i zadowolenie naszych klientów
+        </p>
+      </div>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        {benefits.map(({ number, title, description, icon }) => (
+          <div class="relative group transform transition-all duration-300 hover:-translate-y-2">
+            <div class="absolute -inset-0.5 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-lg blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
+            <div class="relative glass-dark p-8 rounded-lg">
+              <div class="flex items-center gap-4 mb-4">
+                <div class="text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-primary-400 to-secondary-400">
+                  {number}
+                </div>
+                <div class="text-primary-400 transform transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3">
+                  <Fragment set:html={icon} />
+                </div>
+              </div>
+              <h3 class="text-xl font-bold text-white mb-3">{title}</h3>
+              <p class="text-gray-300">{description}</p>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Modern CTA Section -->
+  <section class="py-20 relative overflow-hidden">
+    <div class="container mx-auto px-4">
+      <div class="max-w-4xl mx-auto relative">
+        <div class="absolute inset-0 bg-gradient-to-r from-primary-600/10 to-secondary-600/10 rounded-2xl blur-2xl"></div>
+        <div class="relative glass p-12 rounded-2xl text-center">
+          <h2 class="text-3xl md:text-4xl font-bold mb-6 gradient-text">
+            Gotowy na Rozwój Swojej Firmy?
+          </h2>
+          <p class="text-xl text-gray-600 mb-8">
+            Skontaktuj się z nami i rozpocznij swoją drogę do sukcesu w internecie
+          </p>
+          <Button href="/kontakt" variant="cta">
+            Rozpocznij Współpracę
+            <svg class="w-5 h-5 ml-2 inline-block transition-transform group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
+            </svg>
+          </Button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" />
+</Layout>
+
+<style>
+  /* Enhanced animations */
+  @keyframes float-slow {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(10px, 15px) rotate(2deg); }
+  }
+
+  @keyframes float-slower {
+    0%, 100% { transform: translate(0, 0) rotate(0deg); }
+    50% { transform: translate(-15px, -10px) rotate(-2deg); }
+  }
+
+  @keyframes grid-fade {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 0.3; }
+  }
+
+  .animate-float-slow {
+    animation: float-slow 8s ease-in-out infinite;
+  }
+
+  .animate-float-slower {
+    animation: float-slower 12s ease-in-out infinite;
+  }
+
+  .animate-grid-fade {
+    animation: grid-fade 4s ease-in-out infinite;
+  }
+
+  .glass-dark {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Add to existing styles */
+  .pricing-card {
+    transition: transform 0.3s ease-in-out;
+  }
+
+  .pricing-card:hover {
+    transform: translateY(-8px);
+  }
+
+  .feature-list {
+    position: relative;
+  }
+
+  .feature-list::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 1px;
+    background: linear-gradient(to bottom, transparent, #e5e7eb 15%, #e5e7eb 85%, transparent);
+  }
+</style> 
