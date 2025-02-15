@@ -127,8 +127,10 @@ const testimonials = [
               class="rounded-2xl shadow-2xl w-full object-cover"
               width={800}
               height={600}
-              quality="max"
-              loading="lazy"
+              quality={80}
+              loading="eager"
+              format="webp"
+              densities={[1, 2]}
             />
             <div class="absolute inset-0 rounded-2xl bg-gradient-to-tr from-gray-900/5 to-transparent"></div>
           </div>
@@ -138,7 +140,12 @@ const testimonials = [
   </section>
 
   <!-- Services Section -->
-  <section class="py-20 lg:py-32 relative bg-gray-50">
+  <section 
+    class="services-section"
+    role="region"
+    aria-labelledby="services-title"
+  >
+    <h2 id="services-title" class="sr-only">Nasze Usługi</h2>
     <div class="absolute inset-0 bg-gradient-to-br from-white via-gray-50 to-gray-100/50"></div>
     
     <div class="container mx-auto px-4 relative">
@@ -242,28 +249,11 @@ const testimonials = [
         </div>
       
       <div 
-          x-data="{ 
-          currentSlide: 0,
-          totalSlides: 3,
-          autoplayInterval: null,
-          startAutoplay() {
-            this.autoplayInterval = setInterval(() => {
-              this.nextSlide();
-            }, 5000);
-          },
-          stopAutoplay() {
-            clearInterval(this.autoplayInterval);
-          },
-          nextSlide() {
-            this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
-          },
-          prevSlide() {
-            this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-          }
-        }"
-        x-init="startAutoplay()"
-        @mouseenter="stopAutoplay()"
-        @mouseleave="startAutoplay()"
+        role="region"
+        aria-label="Testimonials Carousel"
+        tabindex="0"
+        @keydown.arrow-left="prevSlide()"
+        @keydown.arrow-right="nextSlide()"
         class="relative"
       >
         <!-- Carousel Container -->
@@ -558,3 +548,40 @@ const testimonials = [
     transform-origin: center center;
   }
 </style>
+
+<script>
+  const observerOptions = {
+    root: null,
+    rootMargin: '0px',
+    threshold: 0.1
+  };
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, observerOptions);
+
+  document.querySelectorAll('.reveal').forEach((element) => {
+    observer.observe(element);
+  });
+</script>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "WebDesign UK",
+  "description": description,
+  "url": Astro.url.href,
+  "potentialAction": {
+    "@type": "SearchAction",
+    "target": {
+      "@type": "EntryPoint",
+      "urlTemplate": `${Astro.url.origin}/search?q={search_term_string}`
+    },
+    "query-input": "required name=search_term_string"
+  }
+})} />

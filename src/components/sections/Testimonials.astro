@@ -1,0 +1,23 @@
+<div x-data="testimonials()" x-init="initTestimonials()" @scroll.window="handleScroll">
+  <!-- Add proper cleanup -->
+  <script>
+    document.addEventListener('alpine:init', () => {
+      Alpine.data('testimonials', () => ({
+        currentSlide: 0,
+        autoplayInterval: null,
+        
+        init() {
+          this.startAutoplay();
+        },
+        
+        startAutoplay() {
+          this.autoplayInterval = setInterval(() => this.nextSlide(), 5000);
+        },
+        
+        cleanup() {
+          if (this.autoplayInterval) clearInterval(this.autoplayInterval);
+        }
+      }));
+    });
+  </script>
+</div> 
