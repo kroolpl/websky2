@@ -6,7 +6,6 @@ import { Image } from 'astro:assets';
 
 // Import team images
 import karolImage from '../assets/images/team/karol.jpeg';
-import marcinImage from '../assets/images/team/marcin.jpeg';
 import piotrImage from '../assets/images/team/piotr.jpeg';
 
 const title = "O Nas | Poznaj Zespół WebDesign UK";
@@ -15,11 +14,11 @@ const description = "Jesteśmy zespołem polskich ekspertów w UK, którzy tworz
 const team = [
   {
     name: "Karol",
-    role: "Lead Developer",
+    role: "Lead Developer & SEO Specialist",
     image: karolImage,
-    title: "Ten od tajemniczego kodu",
-    quote: "W dzieciństwie rozkręcałem piloty, żeby zobaczyć, jak działają. Dziś rozkręcam biznesowe problemy.",
-    description: "Były programista korporacyjny, który uciekł z open-space'u, żeby robić to, co kocha: budować systemy, które NAPRAWDĘ działają. To on stoi za bezpieczeństwem Twoich płatności online i tym, że strona nie zwalnia nawet w szczycie sezonu. Po godzinach… cóż, wciąż rozkręca piloty. Tym razem jednak składa je z powrotem."
+    title: "Ten od tajemniczego kodu i algorytmów Google",
+    quote: "W dzieciństwie rozkręcałem piloty, dziś rozkręcam algorytmy Google'a i biznesowe problemy.",
+    description: "Były programista korporacyjny, który uciekł z open-space'u, żeby robić to, co kocha: budować systemy, które NAPRAWDĘ działają i są widoczne w sieci. To on stoi za bezpieczeństwem Twoich płatności online, wydajnością strony i jej pozycją w Google. Wie, jak sprawić, by Twoja firma była widoczna dla klientów w Manchesterze, Birmingham czy Edynburgu. Po godzinach… cóż, wciąż rozkręca piloty. Tym razem jednak składa je z powrotem."
   },
   {
     name: "Piotr",
@@ -28,14 +27,6 @@ const team = [
     title: "Ten, co ma oko do piękna",
     quote: "Dla mnie projekt to jak opowieść – ma wciągać od pierwszej sekundy.",
     description: "Fotograf-amator, który zamiast zdjęć, zaczął kadrować piksele. To on sprawi, że Twoja strona będzie wyglądać jak strona TOP brytyjskiej firmy, ale z polskim sznytem. Wie, że \"profesjonalnie\" nie musi znaczyć \"sztywno\". Jego ulubione słowo? User-friendly – zarówno w designie, jak i w kontaktach z klientami."
-  },
-  {
-    name: "Marcin",
-    role: "SEO Specialist",
-    image: marcinImage,
-    title: "Ten od Google'owych sekretów",
-    quote: "SEO to nie czary. To strategia. I trochę czarów.",
-    description: "Biegacz długodystansowy, który wie, że w biznesie liczy się wytrwałość. To on sprawi, że Twoja strona zostanie zauważona – nie tylko przez algorytmy, ale przez prawdziwych ludzi szukających usług w Manchesterze, Birmingham czy Edynburgu. Jego supermoc? Zamienianie technicznych terminów na proste rady, które… działają."
   }
 ];
 
@@ -89,7 +80,7 @@ const workProcess = [
         </p>
         <div class="glass p-8 rounded-2xl max-w-3xl">
           <p class="text-lg text-gray-700 leading-relaxed">
-            Cześć! Jesteśmy Karol, Piotr i Marcin – trzech facetów z Polski, którzy po latach życia w UK połączyli siły, żeby pomagać firmom takim jak Twoja. Sami wiemy, jak to jest zaczynać w nowym kraju: szukać klientów, budować zaufanie, tłumaczyć się z obco brzmiącego adresu. Dlatego nie tworzymy "tylko stron". Tworzymy mosty między polską jakością a brytyjskimi możliwościami.
+            Cześć! Jesteśmy Karol i Piotr – dwóch facetów z Polski, którzy po latach życia w UK połączyli siły, żeby pomagać firmom takim jak Twoja. Sami wiemy, jak to jest zaczynać w nowym kraju: szukać klientów, budować zaufanie, tłumaczyć się z obco brzmiącego adresu. Dlatego nie tworzymy "tylko stron". Tworzymy mosty między polską jakością a brytyjskimi możliwościami.
           </p>
         </div>
       </div>
@@ -99,7 +90,7 @@ const workProcess = [
   <!-- Team Section -->
   <section class="py-20 bg-gray-50/50">
     <div class="container mx-auto px-4">
-      <div class="grid md:grid-cols-3 gap-8">
+      <div class="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
         {team.map((member) => (
           <div class="glass p-8 rounded-2xl hover:scale-105 transition-all duration-300">
             <div class="relative mb-6 group">

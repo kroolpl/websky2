@@ -4,6 +4,9 @@ import Header from '../components/Header.astro';
 import Button from '../components/Button.astro';
 import Footer from '../components/Footer.astro';
 import { Image } from 'astro:assets';
+import animalsImage from '../assets/images/portfolio/animals.webp';
+import bornImage from '../assets/images/portfolio/born.webp';
+import petImage from '../assets/images/portfolio/pet.webp';
 import annaImage from '../assets/images/testimonials/anna.jpg';
 import kasiaImage from '../assets/images/testimonials/kasia.jpg';
 import marekImage from '../assets/images/testimonials/marek.jpg';
@@ -16,7 +19,7 @@ const projects = [
     title: 'Polski Sklep Online',
     category: 'E-commerce',
     description: 'Nowoczesny sklep internetowy z polskimi produktami, zintegrowany z systemem płatności i dostawy.',
-    image: '/images/portfolio/project1.jpg',
+    image: animalsImage,
     tags: ['Sklep Online', 'WooCommerce', 'Płatności Online'],
     results: ['200% wzrost sprzedaży', '45% więcej klientów', '98% zadowolonych użytkowników']
   },
@@ -24,7 +27,7 @@ const projects = [
     title: 'Polska Restauracja',
     category: 'Strona Firmowa',
     description: 'Elegancka strona internetowa dla polskiej restauracji w Londynie z systemem rezerwacji online.',
-    image: '/images/portfolio/project2.jpg',
+    image: bornImage,
     tags: ['Rezerwacje Online', 'Menu', 'Responsywność'],
     results: ['300% więcej rezerwacji', '50% nowych klientów', '4.9/5 ocena użytkowników']
   },
@@ -32,7 +35,7 @@ const projects = [
     title: 'Usługi Budowlane',
     category: 'Strona Firmowa',
     description: 'Profesjonalna strona dla firmy budowlanej, prezentująca portfolio realizacji i usługi.',
-    image: '/images/portfolio/project3.jpg',
+    image: petImage,
     tags: ['Portfolio', 'Galeria', 'SEO'],
     results: ['150% więcej zapytań', '80% więcej wyświetleń', 'Top 3 w Google']
   }
@@ -162,10 +165,14 @@ const testimonials = [
             <div class="absolute -inset-0.5 bg-gradient-to-r from-primary-600 to-secondary-600 rounded-2xl blur opacity-30 group-hover:opacity-100 transition duration-1000"></div>
             <div class="relative glass p-6 rounded-2xl h-full">
               <div class="aspect-video mb-6 rounded-xl overflow-hidden">
-                <img 
+                <Image 
                   src={project.image} 
                   alt={project.title}
                   class="w-full h-full object-cover transform transition-transform duration-500 group-hover:scale-110"
+                  width={600}
+                  height={400}
+                  quality={80}
+                  format="webp"
                 />
               </div>
               

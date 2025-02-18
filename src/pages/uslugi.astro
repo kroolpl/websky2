@@ -150,13 +150,43 @@ const benefits = [
         </p>
         <div class="flex flex-col sm:flex-row gap-6">
           <Button href="/kontakt" variant="primary">
-            Rozpocznij Projekt
-            <svg class="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-            </svg>
+            <span class="inline-flex items-center justify-center gap-2">
+              Rozpocznij Projekt
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                class="w-5 h-5" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+              >
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
+            </span>
           </Button>
-          <Button href="#pricing" variant="secondary">
-            Zobacz Pakiety
+          <Button 
+            href="#pricing" 
+            variant="secondary"
+            client:load
+          >
+            <span class="inline-flex items-center justify-center gap-2" onclick="document.getElementById('pricing').scrollIntoView({ behavior: 'smooth', block: 'start' }); return false;">
+              Zobacz Pakiety
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                class="w-5 h-5" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </span>
           </Button>
         </div>
       </div>
@@ -164,7 +194,7 @@ const benefits = [
   </section>
 
   <!-- Pricing Section -->
-  <section class="py-20 relative overflow-hidden">
+  <section id="pricing" class="py-20 relative overflow-hidden">
     <div class="absolute inset-0">
       <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50/30"></div>
       <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
@@ -238,10 +268,22 @@ const benefits = [
                 <span class="font-medium text-gray-900">1 miesiąc</span>
               </div>
               <Button href="/kontakt" variant="primary" class="w-full">
-                Wybierz Pakiet
-                <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <span class="inline-flex items-center justify-center gap-2">
+                  Wybierz Pakiet
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    class="w-5 h-5" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="2" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </span>
               </Button>
             </div>
           </div>
@@ -320,10 +362,22 @@ const benefits = [
                 <span class="font-medium text-gray-900">3 miesiące</span>
               </div>
               <Button href="/kontakt" variant="cta" class="w-full">
-                Wybierz Pakiet
-                <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <span class="inline-flex items-center justify-center gap-2">
+                  Wybierz Pakiet
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    class="w-5 h-5" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="2" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"
+                  >
+                    <path d="M7 7h10v10" />
+                    <path d="M7 17 17 7" />
+                  </svg>
+                </span>
               </Button>
             </div>
           </div>
@@ -395,10 +449,22 @@ const benefits = [
                 <span class="font-medium text-gray-900">3 miesiące</span>
               </div>
               <Button href="/kontakt" variant="primary" class="w-full">
-                Wybierz Pakiet
-                <svg class="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                </svg>
+                <span class="inline-flex items-center justify-center gap-2">
+                  Wybierz Pakiet
+                  <svg 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    class="w-5 h-5" 
+                    viewBox="0 0 24 24" 
+                    fill="none" 
+                    stroke="currentColor" 
+                    stroke-width="2" 
+                    stroke-linecap="round" 
+                    stroke-linejoin="round"
+                  >
+                    <path d="M5 12h14" />
+                    <path d="m12 5 7 7-7 7" />
+                  </svg>
+                </span>
               </Button>
             </div>
           </div>
@@ -512,10 +578,22 @@ const benefits = [
             Skontaktuj się z nami i rozpocznij swoją drogę do sukcesu w internecie
           </p>
           <Button href="/kontakt" variant="cta">
-            Rozpocznij Współpracę
-            <svg class="w-5 h-5 ml-2 inline-block transition-transform group-hover:translate-x-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3" />
-            </svg>
+            <span class="inline-flex items-center justify-center gap-2">
+              Wybierz Pakiet
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                class="w-5 h-5" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+              >
+                <path d="M7 7h10v10" />
+                <path d="M7 17 17 7" />
+              </svg>
+            </span>
           </Button>
         </div>
       </div>

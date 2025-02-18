@@ -6,6 +6,7 @@ const navItems = [
   { name: 'Strona Główna', href: '/' },
   { name: 'O Nas', href: '/o-nas' },
   { name: 'Usługi', href: '/uslugi' },
+  { name: 'Proces', href: '/proces' },
   { name: 'Portfolio', href: '/portfolio' },
   { name: 'Kontakt', href: '/kontakt' },
 ];
@@ -13,7 +14,7 @@ const navItems = [
 
 <header 
   x-data="{ isOpen: false }" 
-  class="fixed w-full glass z-50"
+  class="fixed w-full bg-white/42 backdrop-blur-lg border-b border-gray-100/20 z-50"
   role="banner"
 >
   <nav 
@@ -115,5 +116,10 @@ const navItems = [
   
   .filter-shadow {
     filter: drop-shadow(0 4px 12px rgba(37, 99, 235, 0.2));
+  }
+
+  header {
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
   }
 </style>

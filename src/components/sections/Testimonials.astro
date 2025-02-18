@@ -1,23 +1,164 @@
-<div x-data="testimonials()" x-init="initTestimonials()" @scroll.window="handleScroll">
-  <!-- Add proper cleanup -->
-  <script>
-    document.addEventListener('alpine:init', () => {
-      Alpine.data('testimonials', () => ({
-        currentSlide: 0,
-        autoplayInterval: null,
-        
-        init() {
-          this.startAutoplay();
-        },
-        
-        startAutoplay() {
-          this.autoplayInterval = setInterval(() => this.nextSlide(), 5000);
-        },
-        
-        cleanup() {
-          if (this.autoplayInterval) clearInterval(this.autoplayInterval);
-        }
-      }));
-    });
-  </script>
-</div> 
+---
+import { Image } from 'astro:assets';
+
+interface Testimonial {
+  name: string;
+  role: string;
+  image: ImageMetadata;
+  content: string;
+  rating: number;
+  location: string;
+}
+
+interface Props {
+  testimonials: Testimonial[];
+}
+
+const { testimonials } = Astro.props;
+---
+
+<div 
+  x-data="{
+    currentSlide: 0,
+    totalSlides: 0,
+    autoplayInterval: null,
+
+    init() {
+      this.totalSlides = this.$root.querySelectorAll('.testimonial-slide').length;
+      this.startAutoplay();
+      
+      this.$root.addEventListener('keydown', (e) => {
+        if (e.key === 'ArrowLeft') this.prev();
+        if (e.key === 'ArrowRight') this.next();
+      });
+    },
+
+    next() {
+      this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+      this.resetAutoplay();
+    },
+
+    prev() {
+      this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+      this.resetAutoplay();
+    },
+
+    goToSlide(index) {
+      this.currentSlide = index;
+      this.resetAutoplay();
+    },
+
+    startAutoplay() {
+      this.autoplayInterval = setInterval(() => this.next(), 5000);
+    },
+
+    resetAutoplay() {
+      if (this.autoplayInterval) {
+        clearInterval(this.autoplayInterval);
+      }
+      this.startAutoplay();
+    }
+  }"
+  class="relative"
+  role="region"
+  aria-label="Testimonials Carousel"
+  tabindex="0"
+>
+  <!-- Carousel Container -->
+  <div class="overflow-hidden relative">
+    <div 
+      class="flex transition-transform duration-500 ease-out"
+      x-bind:style="`transform: translateX(-${currentSlide * 100}%)`"
+    >
+      {testimonials.map((testimonial) => (
+        <div class="w-full flex-shrink-0 px-4 testimonial-slide">
+          <div class="max-w-2xl mx-auto">
+            <div class="relative glass p-8 rounded-2xl">
+              <div class="flex items-center gap-4 mb-6">
+                <div class="relative w-16 h-16 rounded-full overflow-hidden">
+                  <Image 
+                    src={testimonial.image} 
+                    alt={testimonial.name}
+                    class="w-full h-full object-cover"
+                    width={64}
+                    height={64}
+                    quality="mid"
+                    loading="lazy"
+                  />
+                </div>
+                <div>
+                  <h3 class="font-bold text-lg">{testimonial.name}</h3>
+                  <p class="text-gray-600 text-sm">{testimonial.role}</p>
+                </div>
+              </div>
+              
+              <div class="mb-4">
+                {[...Array(testimonial.rating)].map(() => (
+                  <svg class="w-5 h-5 text-yellow-400 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
+                  </svg>
+                ))}
+              </div>
+              
+              <blockquote class="text-gray-600 mb-4 text-lg italic">
+                "{testimonial.content}"
+              </blockquote>
+              
+              <div class="flex items-center text-sm text-gray-500">
+                <svg class="w-4 h-4 mr-1" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 11-6 0 3 3 0 016 0z" />
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
+                </svg>
+                {testimonial.location}
+              </div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  <!-- Navigation Buttons -->
+  <button 
+    @click="prev()"
+    class="absolute left-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-all transform hover:scale-110 backdrop-blur-sm"
+    aria-label="Previous slide"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+    </svg>
+  </button>
+  
+  <button 
+    @click="next()"
+    class="absolute right-0 top-1/2 -translate-y-1/2 bg-white/80 p-2 rounded-full shadow-lg hover:bg-white transition-all transform hover:scale-110 backdrop-blur-sm"
+    aria-label="Next slide"
+  >
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+    </svg>
+  </button>
+
+  <!-- Dots Navigation -->
+  <div class="flex justify-center mt-8 space-x-2">
+    {testimonials.map((_, index) => (
+      <button
+        @click={`goToSlide(${index})`}
+        class="w-2.5 h-2.5 rounded-full transition-all duration-300"
+        :class={`currentSlide === ${index} ? 'bg-primary-600 w-8' : 'bg-gray-300 hover:bg-gray-400'`}
+        aria-label={`Go to slide ${index + 1}`}
+      >
+        <span class="sr-only">Slide {index + 1}</span>
+      </button>
+    ))}
+  </div>
+</div>
+
+<style>
+  .glass {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+</style> 

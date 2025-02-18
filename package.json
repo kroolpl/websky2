@@ -10,13 +10,13 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/alpinejs": "^0.4.0",
+    "@astrojs/alpinejs": "^0.4.3",
     "@astrojs/react": "^4.2.0",
     "@astrojs/tailwind": "^5.1.0",
     "@fontsource/inter": "^5.1.1",
     "@heroicons/react": "^2.2.0",
-    "@types/alpinejs": "^3.13.6",
-    "alpinejs": "^3.13.3",
+    "@types/alpinejs": "^3.13.11",
+    "alpinejs": "^3.14.8",
     "astro": "^5.2.5",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",

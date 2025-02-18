@@ -19,7 +19,11 @@ export default defineConfig({
     },
     optimizeDeps: {
       exclude: ['@astrojs/image', 'sharp']
-    }
+    },
+    plugins: [
+      // ... other plugins
+    ],
+    assetsInclude: ['**/*.svg'], // Ensure SVGs are handled as assets
   },
   image: {
     service: { entrypoint: 'astro/assets/services/sharp' },
