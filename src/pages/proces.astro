@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Button from '../components/Button.astro';
 import Footer from '../components/Footer.astro';
+import { Image } from 'astro:assets';
+import procesImage from '../assets/images/proces.png';
 
 const title = "Proces Tworzenia Strony Internetowej | WebDesign UK";
 const description = "Poznaj nasz przejrzysty, 4-etapowy proces tworzenia stron internetowych. Od planowania przez projekt i realizację, aż po wdrożenie. Sprawdź jak będziemy współpracować!";
@@ -19,36 +21,59 @@ const description = "Poznaj nasz przejrzysty, 4-etapowy proces tworzenia stron i
     </div>
 
     <div class="container mx-auto px-4 relative">
-      <div class="max-w-4xl mx-auto text-center">
-        <span class="inline-block px-6 py-2 rounded-full bg-primary-100/80 text-primary-700 text-sm font-medium mb-6 backdrop-blur-sm">
-          Nasz Proces
-        </span>
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
-          Jak Powstanie Twoja 
-          <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
-            Strona?
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-center lg:text-left">
+          <span class="inline-block px-6 py-2 rounded-full bg-primary-100/80 text-primary-700 text-sm font-medium mb-6 backdrop-blur-sm">
+            Nasz Proces
           </span>
-        </h1>
-        <p class="text-xl text-gray-600 mb-12 max-w-3xl mx-auto">
-          Poznaj nasz sprawdzony proces tworzenia stron internetowych, który gwarantuje sukces Twojego projektu
-        </p>
-        <Button href="#process" variant="primary">
-          <span class="inline-flex items-center justify-center gap-2">
-            Zobacz Proces
-            <svg 
-              xmlns="http://www.w3.org/2000/svg" 
-              class="w-5 h-5" 
-              viewBox="0 0 24 24" 
-              fill="none" 
-              stroke="currentColor" 
-              stroke-width="2" 
-              stroke-linecap="round" 
-              stroke-linejoin="round"
-            >
-              <path d="m6 9 6 6 6-6"/>
-            </svg>
-          </span>
-        </Button>
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold mb-8">
+            Jak Powstanie Twoja 
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">
+              Strona?
+            </span>
+          </h1>
+          <p class="text-xl text-gray-600 mb-12 max-w-3xl lg:max-w-none">
+            Poznaj nasz sprawdzony proces tworzenia stron internetowych, który gwarantuje sukces Twojego projektu
+          </p>
+          <Button href="#process" variant="primary">
+            <span class="inline-flex items-center justify-center gap-2">
+              Zobacz Proces
+              <svg 
+                xmlns="http://www.w3.org/2000/svg" 
+                class="w-5 h-5" 
+                viewBox="0 0 24 24" 
+                fill="none" 
+                stroke="currentColor" 
+                stroke-width="2" 
+                stroke-linecap="round" 
+                stroke-linejoin="round"
+              >
+                <path d="m6 9 6 6 6-6"/>
+              </svg>
+            </span>
+          </Button>
+        </div>
+
+        <div class="relative group">
+          <!-- Decorative elements -->
+          <div class="absolute -inset-4 opacity-75 bg-gradient-to-r from-primary-500/10 via-secondary-500/10 to-purple-500/10 blur-2xl rounded-3xl group-hover:opacity-100 transition-opacity duration-700"></div>
+          <div class="absolute -inset-2 opacity-50 bg-gradient-to-r from-blue-500/10 via-primary-500/10 to-secondary-500/10 blur-xl rounded-3xl animate-pulse-slow"></div>
+          
+          <div class="relative rounded-2xl overflow-hidden animate-float-smooth max-w-[512px] mx-auto">
+            <Image 
+              src={procesImage} 
+              alt="Proces projektowania strony" 
+              class="rounded-2xl shadow-2xl w-full object-cover transform group-hover:scale-105 transition-all duration-700 group-hover:shadow-primary-500/25 group-hover:shadow-2xl motion-safe:group-hover:rotate-1"
+              width={512}
+              height={503}
+              quality={100}
+            />
+          </div>
+          
+          <!-- Floating dots decoration -->
+          <div class="absolute -right-8 -bottom-8 w-24 h-24 bg-primary-500/10 rounded-full blur-xl animate-pulse-slow"></div>
+          <div class="absolute -left-6 -top-6 w-20 h-20 bg-secondary-500/10 rounded-full blur-xl animate-pulse-slow animation-delay-2000"></div>
+        </div>
       </div>
     </div>
   </section>
@@ -464,5 +489,42 @@ const description = "Poznaj nasz przejrzysty, 4-etapowy proces tworzenia stron i
 
   .animate-shine {
     animation: shine 3s linear infinite;
+  }
+
+  @keyframes float-smooth {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg) scale(1.005);
+    }
+    33% {
+      transform: translate(4px, -8px) rotate(0.3deg) scale(1);
+    }
+    66% {
+      transform: translate(-4px, -4px) rotate(-0.3deg) scale(1.01);
+    }
+  }
+
+  .animate-float-smooth {
+    animation: float-smooth 8s infinite;
+    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+    will-change: transform, scale;
+  }
+
+  @keyframes pulse-slow {
+    0%, 100% {
+      opacity: 0.3;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.5;
+      transform: scale(1.1);
+    }
+  }
+
+  .animate-pulse-slow {
+    animation: pulse-slow 4s ease-in-out infinite;
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
   }
 </style> 
