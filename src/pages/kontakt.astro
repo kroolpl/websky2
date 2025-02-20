@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import Button from '../components/Button.astro';
+import { Image } from 'astro:assets';
+import procesImage from '../assets/images/proces.png';
 
 const title = "Kontakt - Porozmawiajmy o Twoim Projekcie | WebDesign UK";
 const description = "Skontaktuj się z nami, aby omówić Twój projekt. Oferujemy darmową konsultację i wycenę dla polskich firm w UK.";
@@ -43,65 +45,115 @@ const contactMethods = [
         <div class="absolute inset-0 bg-grid-slate-200 bg-[size:32px_32px] animate-grid-fade"></div>
       </div>
     </div>
-    
+
     <div class="container mx-auto px-4 relative">
-      <div class="text-left max-w-4xl">
-        <span class="inline-block px-6 py-2 rounded-full bg-primary-100/80 text-primary-700 text-sm font-medium mb-6 animate-fade-down backdrop-blur-sm">
-          Skontaktuj się z Nami
-        </span>
-        <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-8 leading-tight tracking-tight">
-          Rozpocznij Swoją <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">Cyfrową</span> Przygodę
-        </h1>
-        <p class="text-xl md:text-2xl text-gray-600 mb-12 animate-fade-up max-w-3xl leading-relaxed">
-          Jesteśmy tutaj, aby pomóc Ci stworzyć idealną stronę internetową dla Twojej firmy. Skontaktuj się z nami i rozpocznij swoją drogę do sukcesu online.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-6">
-          <Button href="#contact-form" variant="primary">
-            Napisz do Nas
-            <svg class="w-5 h-5 ml-2" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M15.042 21.672 13.684 16.6m0 0-2.51 2.225.569-9.47 5.227 7.917-3.286-.672Zm-7.518-.267A8.25 8.25 0 1 1 20.25 10.5M8.288 14.212A5.25 5.25 0 1 1 17.25 10.5" />
-            </svg>
-          </Button>
-          <Button href="tel:+44123456789" variant="secondary">
-            Zadzwoń Teraz
-          </Button>
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="text-center lg:text-left">
+          <span class="inline-block px-6 py-2 rounded-full bg-primary-100/80 text-primary-700 text-sm font-medium mb-6 backdrop-blur-sm">
+            Skontaktuj się z Nami
+          </span>
+          <h1 class="text-5xl md:text-6xl lg:text-7xl font-bold text-gray-800 mb-8 leading-tight tracking-tight">
+            Rozpocznij Swoją <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">Cyfrową</span> Przygodę
+          </h1>
+          <p class="text-xl text-gray-600 mb-12 max-w-3xl lg:max-w-none">
+            Jesteśmy tutaj, aby pomóc Ci stworzyć idealną stronę internetową dla Twojej firmy. Skontaktuj się z nami i rozpocznij swoją drogę do sukcesu online.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-6">
+            <Button href="#contact-form" variant="primary">
+              <span class="inline-flex items-center justify-center gap-2">
+                Napisz do Nas
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4" />
+                </svg>
+              </span>
+            </Button>
+            <Button href="tel:+44123456789" variant="secondary">
+              <span class="inline-flex items-center justify-center gap-2">
+                Zadzwoń Teraz
+                <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+                </svg>
+              </span>
+            </Button>
+          </div>
+        </div>
+
+        <!-- Contact Methods Cards -->
+        <div class="grid gap-6">
+          {contactMethods.map(method => (
+            <a 
+              href={method.link}
+              class="group relative"
+            >
+              <div class="absolute -inset-2 bg-gradient-to-r from-primary-500/10 via-secondary-500/10 to-purple-500/10 rounded-xl blur-xl opacity-75 group-hover:opacity-100 transition duration-500"></div>
+              <div class="relative glass p-6 rounded-xl flex items-center space-x-6 hover:scale-[1.02] transition-all">
+                <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white group-hover:rotate-6 transition-transform">
+                  <Fragment set:html={method.icon} />
+                </div>
+                <div>
+                  <h3 class="font-semibold text-gray-900 mb-1">{method.title}</h3>
+                  <p class="text-gray-600">{method.value}</p>
+                </div>
+              </div>
+            </a>
+          ))}
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact Form Section -->
   <section class="py-20 lg:py-32 relative overflow-hidden" id="contact-form">
+    <div class="absolute inset-0">
+      <div class="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50/30"></div>
+      <div class="absolute inset-0 bg-[linear-gradient(to_right,#80808008_1px,transparent_1px),linear-gradient(to_bottom,#80808008_1px,transparent_1px)] bg-[size:24px_24px]"></div>
+    </div>
+
     <div class="container mx-auto px-4 relative">
       <div class="max-w-6xl mx-auto">
-        <div class="grid lg:grid-cols-2 gap-12 items-center">
-          <!-- Left Column - Contact Info -->
-          <div class="reveal">
-            <span class="inline-block px-6 py-2 rounded-full bg-primary-100/80 text-primary-700 text-sm font-medium mb-6 animate-fade-down backdrop-blur-sm">
-              Skontaktuj się z Nami
-            </span>
-            <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-6 leading-tight tracking-tight">
-              Porozmawiajmy o Twoim <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 to-secondary-600">Projekcie</span>
-            </h2>
-            <p class="text-xl text-gray-600 mb-12 leading-relaxed">
-              Jesteśmy tutaj, aby pomóc Ci stworzyć idealną stronę internetową dla Twojej firmy. Skontaktuj się z nami i rozpocznij swoją drogę do sukcesu online.
-            </p>
-
-            <div class="space-y-6">
-              {contactMethods.map(method => (
-                <a 
-                  href={method.link}
-                  class="flex items-center p-6 glass rounded-xl hover:scale-105 transition-all group"
-                >
-                  <div class="w-12 h-12 rounded-lg bg-gradient-to-br from-primary-500 to-secondary-500 flex items-center justify-center text-white mr-6 group-hover:rotate-6 transition-transform">
-                    <Fragment set:html={method.icon} />
+        <div class="grid lg:grid-cols-2 gap-12 items-start">
+          <!-- Left Column -->
+          <div class="relative group">
+            <div class="absolute -inset-4 opacity-75 bg-gradient-to-r from-primary-500/10 via-secondary-500/10 to-purple-500/10 blur-2xl rounded-3xl group-hover:opacity-100 transition-opacity duration-700"></div>
+            <div class="relative glass p-8 rounded-xl">
+              <h2 class="text-3xl font-bold mb-6">
+                Dlaczego Warto Się z Nami Skontaktować?
+              </h2>
+              <div class="space-y-6">
+                <div class="flex items-start gap-4">
+                  <div class="w-8 h-8 rounded-lg bg-primary-100 flex items-center justify-center text-primary-600 mt-1">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                    </svg>
                   </div>
                   <div>
-                    <h3 class="font-semibold text-gray-900 mb-1">{method.title}</h3>
-                    <p class="text-gray-600">{method.value}</p>
+                    <h3 class="font-semibold mb-2">Darmowa Konsultacja</h3>
+                    <p class="text-gray-600">Pierwsze spotkanie i wycena projektu są całkowicie bezpłatne</p>
                   </div>
-                </a>
-              ))}
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="w-8 h-8 rounded-lg bg-primary-100 flex items-center justify-center text-primary-600 mt-1">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold mb-2">Szybka Odpowiedź</h3>
+                    <p class="text-gray-600">Odpowiadamy na zapytania w ciągu 24 godzin</p>
+                  </div>
+                </div>
+                <div class="flex items-start gap-4">
+                  <div class="w-8 h-8 rounded-lg bg-primary-100 flex items-center justify-center text-primary-600 mt-1">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5h12M9 3v2m1.048 9.5A18.022 18.022 0 016.412 9m6.088 9h7M11 21l5-10 5 10M12.751 5C11.783 10.77 8.07 15.61 3 18.129" />
+                    </svg>
+                  </div>
+                  <div>
+                    <h3 class="font-semibold mb-2">Komunikacja po Polsku</h3>
+                    <p class="text-gray-600">Zapewniamy obsługę w języku polskim i angielskim</p>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -220,5 +272,55 @@ const contactMethods = [
 </Layout>
 
 <style>
-  /* Add your existing animations and styles here */
+  .glass {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  @keyframes float-smooth {
+    0%, 100% {
+      transform: translate(0, 0) rotate(0deg) scale(1.005);
+    }
+    33% {
+      transform: translate(4px, -8px) rotate(0.3deg) scale(1);
+    }
+    66% {
+      transform: translate(-4px, -4px) rotate(-0.3deg) scale(1.01);
+    }
+  }
+
+  .animate-float-smooth {
+    animation: float-smooth 8s infinite;
+    animation-timing-function: cubic-bezier(0.37, 0, 0.63, 1);
+  }
+
+  @keyframes gradient-xy {
+    0%, 100% {
+      background-size: 400% 400%;
+      background-position: left top;
+    }
+    25% {
+      background-size: 400% 400%;
+      background-position: right top;
+    }
+    50% {
+      background-size: 400% 400%;
+      background-position: right bottom;
+    }
+    75% {
+      background-size: 400% 400%;
+      background-position: left bottom;
+    }
+  }
+
+  .animate-gradient-xy {
+    animation: gradient-xy 15s ease infinite;
+  }
+
+  .bg-grid-slate-200 {
+    background-image: linear-gradient(to right, rgb(226 232 240 / 0.1) 1px, transparent 1px),
+                      linear-gradient(to bottom, rgb(226 232 240 / 0.1) 1px, transparent 1px);
+  }
 </style> 
