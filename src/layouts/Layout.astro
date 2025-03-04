@@ -1,10 +1,9 @@
 ---
 import { ViewTransitions } from 'astro:transitions';
 import favicon from '../assets/images/fav.png';
-import '@fontsource/inter/400.css';
-import '@fontsource/inter/500.css';
-import '@fontsource/inter/600.css';
-import '@fontsource/inter/700.css';
+import '@fontsource-variable/epilogue';
+import '@fontsource-variable/mulish';
+import '../styles/global.css';
 
 interface Props {
   title: string;
@@ -66,6 +65,7 @@ const { title, description } = Astro.props;
       }
     </script>
     <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flyonui@latest/dist/flyonui.min.js" defer></script>
   </head>
   <body class="bg-gradient-to-br from-gray-50 to-blue-50/30">
     <div class="flex flex-col min-h-screen">
@@ -77,6 +77,10 @@ const { title, description } = Astro.props;
       </main>
       <slot name="footer" />
     </div>
+    <script>
+      // Import FlyonUI using a proper import path
+      import 'flyonui';
+    </script>
   </body>
 </html>
 

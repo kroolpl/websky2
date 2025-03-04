@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Font settings */
+:root {
+  --font-heading: 'Epilogue Variable', system-ui, sans-serif;
+  --font-body: 'Mulish Variable', system-ui, sans-serif;
+}
+
+/* Typography system */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+body {
+  font-family: var(--font-body);
+  font-weight: 400;
+  line-height: 1.75;
+}
+
+/* Override FlyonUI card borders */
+.card {
+  border: none !important;
+}
+
+/* If you want to keep the glass effect border but make it more subtle */
+.glass {
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+}

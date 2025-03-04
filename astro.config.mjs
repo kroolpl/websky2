@@ -4,7 +4,13 @@ import alpinejs from "@astrojs/alpinejs";
 import react from "@astrojs/react";
 
 export default defineConfig({
-  integrations: [tailwind(), alpinejs(), react()],
+  integrations: [
+    tailwind({
+      config: { path: './tailwind.config.cjs' }
+    }),
+    alpinejs(),
+    react()
+  ],
   site: 'https://your-domain.com',
   compressHTML: true,
   build: {
@@ -23,7 +29,7 @@ export default defineConfig({
     plugins: [
       // ... other plugins
     ],
-    assetsInclude: ['**/*.svg'], // Ensure SVGs are handled as assets
+    assetsInclude: ['**/*.svg']
   },
   image: {
     service: { entrypoint: 'astro/assets/services/sharp' },
