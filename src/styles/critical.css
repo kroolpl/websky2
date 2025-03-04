@@ -1,3 +1,23 @@
+/* Critical CSS for immediate rendering */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Mulish Variable', system-ui, sans-serif;
+  background: linear-gradient(to bottom right, #f9fafb, rgba(219, 234, 254, 0.3));
+}
+
+.gradient-text {
+  background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Prevent content shift during page load */
+html {
+  overflow-x: hidden;
+}
+
 /* Critical CSS for above-the-fold content */
 :root {
   --accent: 136, 58, 234;
